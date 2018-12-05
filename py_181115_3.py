@@ -1,3 +1,5 @@
+#спасибо mik-a-el c cyberforum(dot)ru за помощь
+
 print( "Задание 3" )
 print( "Введите размер квадратной матрицы" )
 n = int( input() )
