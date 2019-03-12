@@ -9,16 +9,16 @@ using namespace std;
 class Matrix
 {
 public:
-	Matrix(int n_rows, int n_columns);						//объявление
+	Matrix(int n_rows, int n_columns);				//объявление
 
-	double &operator()(int row, int column);					//возвращается не копия, а ссылка, чтобы его можно было менять
+	double &operator()(int row, int column);			//возвращается не копия, а ссылка, чтобы его можно было менять
 
 	int nRows() const;
 	int nColumns() const;
 
 private:
 	vector<double> el;
-	int n_rows;																	//строки
+	int n_rows;																		//строки
 	int n_columns;																//столбцы
 };
 
@@ -30,7 +30,7 @@ Matrix::Matrix(int n_rows, int n_columns)
 	*/
 {
 	if ( n_rows < 1 || n_columns < 1 )
-		throw string("Wrong number of rows and columns");			//выкинуть ошибку
+		throw string("Wrong number of rows and columns");	//выкинуть ошибку
 																				//this-> указатель на объект класса
 	this->n_rows = n_rows;
 	this->n_columns = n_columns;
@@ -47,7 +47,7 @@ int Matrix::nColumns() const
 	return n_columns;
 }
 
-double &Matrix::operator()(int row, int column)						//выражаем матрицу в виде вектора
+double &Matrix::operator()(int row, int column)				//выражаем матрицу в виде вектора
 {
 	/*
 	234
@@ -64,7 +64,7 @@ double &Matrix::operator()(int row, int column)						//выражаем матр
 	return el[n_columns * row + column];
 }
 
-Matrix add(Matrix m1, Matrix m2, int sign)						//костыль для сложения-вычитания
+Matrix add(Matrix m1, Matrix m2, int sign)				//костыль для сложения-вычитания
 {
 	Matrix result(m1.nRows(), m1.nColumns());
 	for (int i = 0; i < m1.nRows(); i++)
@@ -77,17 +77,17 @@ Matrix add(Matrix m1, Matrix m2, int sign)						//костыль для слож
 	return result;
 }
 
-Matrix operator+(Matrix m1, Matrix m2)							//сложение матриц
+Matrix operator+(Matrix m1, Matrix m2)					//сложение матриц
 {
 	return add(m1, m2, +1);
 }
 
-Matrix operator-(Matrix m1, Matrix m2)							//вычитание матриц
+Matrix operator-(Matrix m1, Matrix m2)					//вычитание матриц
 {
 	return add(m1, m2, -1);
 }
 
-Matrix operator*(Matrix m, double value)						//умножение матрицы на константу
+Matrix operator*(Matrix m, double value)				//умножение матрицы на константу
 {
 	Matrix result(m.nRows(), m.nColumns());
 	for (int i = 0; i < m.nRows(); i++)
@@ -100,12 +100,12 @@ Matrix operator*(Matrix m, double value)						//умножение матриц�
 	return result;
 }
 
-Matrix operator*(double value, Matrix m)						//умножение константы на матрицу
+Matrix operator*(double value, Matrix m)				//умножение константы на матрицу
 {
 	return m * value;
 }
 
-Matrix operator*(Matrix m1, Matrix m2)							//умножение матрицы на матрицу
+Matrix operator*(Matrix m1, Matrix m2)					//умножение матрицы на матрицу
 {
 	Matrix result(m1.nRows(), m2.nColumns());
 	for (int i = 0; i < m1.nRows(); i++)
@@ -124,7 +124,7 @@ Matrix operator*(Matrix m1, Matrix m2)							//умножение матрицы
 	return result;
 }
 
-ostream &operator<<(ostream &out, Matrix m)						//вывод матрицы
+ostream &operator<<(ostream &out, Matrix m)				//вывод матрицы
 {
 	for (int i = 0; i < m.nRows(); i++)
 	{
