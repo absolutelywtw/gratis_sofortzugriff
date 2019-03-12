@@ -1,4 +1,6 @@
-﻿#include "pch.h"
+//спасибо Каленюку И.В. за помощь
+
+#include "pch.h"
 #include <iostream>
 #include <vector>																//библиотека по работе с векторами
 #include <string>
@@ -7,9 +9,9 @@ using namespace std;
 class Matrix
 {
 public:
-	Matrix(int n_rows, int n_columns);											//объявление
+	Matrix(int n_rows, int n_columns);						//объявление
 
-	double &operator()(int row, int column);									//возвращается не копия, а ссылка, чтобы его можно было менять
+	double &operator()(int row, int column);					//возвращается не копия, а ссылка, чтобы его можно было менять
 
 	int nRows() const;
 	int nColumns() const;
@@ -28,7 +30,7 @@ Matrix::Matrix(int n_rows, int n_columns)
 	*/
 {
 	if ( n_rows < 1 || n_columns < 1 )
-		throw string("Wrong number of rows and columns");						//выкинуть ошибку
+		throw string("Wrong number of rows and columns");			//выкинуть ошибку
 																				//this-> указатель на объект класса
 	this->n_rows = n_rows;
 	this->n_columns = n_columns;
@@ -45,7 +47,7 @@ int Matrix::nColumns() const
 	return n_columns;
 }
 
-double &Matrix::operator()(int row, int column)					//выражаем матрицу в виде вектора
+double &Matrix::operator()(int row, int column)						//выражаем матрицу в виде вектора
 {
 	/*
 	234
@@ -98,7 +100,7 @@ Matrix operator*(Matrix m, double value)						//умножение матриц�
 	return result;
 }
 
-Matrix operator*(double value, Matrix m)						//умножение константы на матрицу, для идиотов
+Matrix operator*(double value, Matrix m)						//умножение константы на матрицу
 {
 	return m * value;
 }
@@ -122,7 +124,7 @@ Matrix operator*(Matrix m1, Matrix m2)							//умножение матрицы
 	return result;
 }
 
-ostream &operator<<(ostream &out, Matrix m)					//вывод матрицы
+ostream &operator<<(ostream &out, Matrix m)						//вывод матрицы
 {
 	for (int i = 0; i < m.nRows(); i++)
 	{
@@ -181,9 +183,9 @@ Matrix jordan_gauss(Matrix a, Matrix b)
 
 
 
-	for (int i = 0; i < a.nRows() - 1; i++)					//ведущая строка
+	for (int i = 0; i < a.nRows() - 1; i++)						//ведущая строка
 	{
-		for (int j = i + 1; j < a.nRows; j++)				//текущая строка
+		for (int j = i + 1; j < a.nRows; j++)					//текущая строка
 		{
 			double coeff = a(j, i) / a(i, i);				//коэффициент
 			for (int k = i; k < a.nColumns(); k++)
